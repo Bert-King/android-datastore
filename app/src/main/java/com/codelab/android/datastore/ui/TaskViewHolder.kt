@@ -29,6 +29,12 @@ import java.util.Locale
 
 /**
  * Holder for a task item in the tasks list
+ *
+ * 包含构建需要在界面中显示的数据所需的所有元素：
+ * 1. 任务列表
+ * 2. 显示已完成
+ * 3. 排序顺序标志
+ *
  */
 class TaskViewHolder(
     private val binding: TaskViewItemBinding

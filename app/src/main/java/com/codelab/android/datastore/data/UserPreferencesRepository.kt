@@ -24,6 +24,9 @@ import kotlinx.coroutines.flow.StateFlow
 private const val USER_PREFERENCES_NAME = "user_preferences"
 private const val SORT_ORDER_KEY = "sort_order"
 
+/**
+ * 排序规则
+ */
 enum class SortOrder {
     NONE,
     BY_DEADLINE,
@@ -32,6 +35,7 @@ enum class SortOrder {
 }
 
 /**
+ * 将当前的排序顺序保存在SP中，该类会公开同步方法以保存和获取排序顺序
  * Class that handles saving and retrieving user preferences
  */
 class UserPreferencesRepository private constructor(context: Context) {
@@ -52,6 +56,9 @@ class UserPreferencesRepository private constructor(context: Context) {
             return SortOrder.valueOf(order ?: SortOrder.NONE.name)
         }
 
+    /**
+     * 截止日期排序
+     */
     fun enableSortByDeadline(enable: Boolean) {
         val currentOrder = sortOrderFlow.value
         val newSortOrder =
@@ -72,6 +79,9 @@ class UserPreferencesRepository private constructor(context: Context) {
         _sortOrderFlow.value = newSortOrder
     }
 
+    /**
+     * 任务优先级排序
+     */
     fun enableSortByPriority(enable: Boolean) {
         val currentOrder = sortOrderFlow.value
         val newSortOrder =
@@ -92,6 +102,9 @@ class UserPreferencesRepository private constructor(context: Context) {
         _sortOrderFlow.value = newSortOrder
     }
 
+    /**
+     * 更新排序顺序
+     */
     private fun updateSortOrder(sortOrder: SortOrder) {
         sharedPreferences.edit {
             putString(SORT_ORDER_KEY, sortOrder.name)

@@ -26,12 +26,18 @@ import com.codelab.android.datastore.data.UserPreferencesRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 
+/**
+ * UI模型
+ */
 data class TasksUiModel(
     val tasks: List<Task>,
     val showCompleted: Boolean,
     val sortOrder: SortOrder
 )
 
+/**
+ * 负责界面渲染逻辑
+ */
 class TasksViewModel(
     repository: TasksRepository,
     private val userPreferencesRepository: UserPreferencesRepository

@@ -18,9 +18,16 @@ package com.codelab.android.datastore.data
 
 import java.util.Date
 
+/**
+ * 任务优先级
+ */
 enum class TaskPriority {
     HIGH, MEDIUM, LOW
 }
+
+/**
+ * 模型类
+ */
 data class Task(
     val name: String,
     val deadline: Date,
