@@ -4,6 +4,16 @@ Supporting code for [Preferences DataStore codelab](https://codelabs.developers.
 
 DataStore is a new and improved data storage solution aimed at replacing SharedPreferences. Built on Kotlin coroutines and Flow, DataStore provides two different implementations: Proto DataStore, that lets you store typed objects (backed by protocol buffers) and Preferences DataStore, that stores key-value pairs. Data is stored asynchronously, consistently, and transactionally, overcoming some of the drawbacks of SharedPreferences.
 
+关于限制数据库的行数:[详情](https://stackoverflow.com/questions/46193356/limit-the-number-of-rows-in-a-room-database)
+```java
+ /**
+     * 参考自:https://stackoverflow.com/questions/46193356/limit-the-number-of-rows-in-a-room-database
+     */
+    @Transaction
+    @Query("DELETE FROM posts WHERE draftId IN (SELECT draftId FROM posts ORDER BY update_time DESC LIMIT 1 OFFSET :maxColumns)")
+    fun removeOldPost(maxColumns:Int)
+```
+
 
 License
 --------
